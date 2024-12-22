@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin-top: 2vh;
+    /* padding-top: ; */
+    height: 100vh;
+    widtH: 100vw;
+    background-color: #f5f5f5;
+    font-family: "Montserrat", serif;
+    overflow: hidden;
+}
+
+body>h1 {
+    font-size: 5vh;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4vh;
+    text-decoration: underline;
+    text-underline-offset: 2.5vh;
+}
+
+#modal {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    /* background-color: #fff; */
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+
+
+}
+
+#modal-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /* z-index: 99; */
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+#modal>#modal-content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 5vh 4vw;
+    border-radius: 10px;
+    background-color: #fff;
+    /* z-index: 100; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#modal-content p{
+    font-weight: bold;
+}
+#modal-content button {
+    color: #333333;
+    background-color: #e0e0e0;
+    padding: 4px;
+    font-weight: bold;
+    width: 40%;
+    margin: 5px;
+    border-radius: 6px;
+    border: 1px solid #333333;
+
+}
+#modal-content button:hover {
+    color: #e0e0e0;
+    background-color: #333333;
+    cursor: pointer;
+}
+
+#display {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* background-color: lightblue; */
+    ;
+    padding: 10px 0;
+}
+
+#display input {
+    width: 35vw;
+    padding: 5px 0.8vw;
+    color: #333333;
+    font-weight: bolder;
+    background-color: #e0e0e0;
+    outline: none;
+    border: 2px solid #333333;
+    border-radius: 20px;
+    font-size: 1.2vw;
+}
+
+#display input::placeholder {
+    color: #223843
+}
+
+#display input:focus {
+    background-color: transparent;
+}
+
+#display #buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#display #buttons>button {
+    font-size: 1.1vw;
+    padding: 5px 0.5vw;
+    background-color: #e0e0e0;
+    color: #333333;
+    width: 10vw;
+    min-width: 130px;
+    border-radius: 18px;
+    font-weight: bolder;
+    border: 2px solid #333333;
+}
+
+#display #buttons>button:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#lists {
+    /* border: 1px solid #000; */
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    height: 70vh;
+    padding: 50px 100px;
+    row-gap: 10px;
+}
+
+#lists li {
+    font-weight: 500;
+    display: flex;
+    gap: 15px;
+    width: 25vw;
+    min-width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px 5px 33px;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    /* height: 45px; */
+    overflow-y: hidden;
+    border-radius: 10px;
+    /* margin-bottom: 5px; */
+    font-size: 3.5vh;
+    background-color: #fff;
+    position: relative;
+}
+
+#lists li::-webkit-scrollbar {
+    display: none;
+}
+
+#lists li::before {
+    content: "✦";
+    position: absolute;
+    left: 2%;
+}
+
+#lists li>div {
+    display: flex;
+    gap: 3px;
+    flex-wrap: nowrap;
+}
+
+#lists li button {
+    color: #333333;
+    font-weight: bolder;
+    background-color: #f5f5f5;
+    outline: none;
+    border: 1px solid #f5f5f5;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 50%;
+
+}
+
+#lists li button:hover {
+    /* background-color: transparent; */
+    /* transform: scale(1.1); */
+    cursor: pointer;
+    border: 1px solid #333333;
+
+}
+
+#lists li button>i {
+    /* font-size: 16px; */
+    pointer-events: none;
+}
+
+#social {
+    padding: 3vh 3vw;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    background-color: #fff;
+    height: 10vh;
+    width: 100vw;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
+
+#social>div {
+    display: flex;
+    gap: 10px;
+}
+
+#social div a:nth-child(1) {
+    text-decoration: none;
+    color: #0A66C2;
+    border: 1px solid #0A66C2;
+    ;
+}
+
+#social div a:nth-child(2) {
+    text-decoration: none;
+    color: #1F2328;
+    border: 1px solid #1F2328;
+}
+
+#social>h2 {
+    font-size: 1.8vw;
+    text-decoration: underline;
+    text-underline-offset: 7px;
+}
+
+#social>div>a>i {
+    font-size: 20px;
+    pointer-events: none;
+}
+
+#social>a:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
