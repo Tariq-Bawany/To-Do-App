@@ -13,6 +13,59 @@ body {
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
 }
 
+#back{
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    letter-spacing: 2px;
+    outline: none;
+    &:before{
+        content: "";
+        height: 100px;
+        width: 100px;
+        transform: translate(-50%,-50%);
+        border-radius: 50%;
+        
+        /* border-top: 5px dashed #4ecdc4; */
+        /* border-bottom: 5px dashed #4ecdc4; */
+        position: absolute;
+        top: 50%;
+        /* border-top-style: double; */
+        left: 50%;
+        animation: circle-rotate 1.5s infinite;
+    }
+    &:hover{
+        transform: scale(1.1);
+        cursor: pointer;
+        border: 5px solid #fff;
+        &::before{
+            animation: none;
+        }
+        
+    }
+}
+@keyframes circle-rotate {
+    from{
+        height: 50px;
+        width: 50px;
+        border: 2px dashed #4ecdc4;
+        /* border-top: 5px dashed #4ecdc4; */
+        transform:translate(-50%,-50%) rotate(0deg);
+    }
+    to{
+        height: 100px;
+        width: 100px;
+        border: 10px dashed #4ecdc4;
+        transform:translate(-50%,-50%) rotate(360deg);
+        opacity: 0.5;
+    }
+}
 .container {
     position: relative;
     width: 100%;

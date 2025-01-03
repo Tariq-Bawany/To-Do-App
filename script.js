@@ -85,3 +85,7 @@ function mainLists(event){
     renderList()
   }
 }
+
+function getStarted() {
+  window.location.href = "/login.html";
+}

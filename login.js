@@ -101,23 +101,6 @@ var loginBtn = document.getElementById("Login")
 var loginEmail = document.getElementById("Login-email")
 var loginPass = document.getElementById("Login-password")
 
-loginBtn.addEventListener('click', async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    // 
-
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, loginEmail.value, loginPass.value)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
-
-})
 
 loginBtn.addEventListener('click', async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -132,7 +115,7 @@ loginBtn.addEventListener('click', async (e) => {
         const user = userCredential.user;
         alert("You have successfully logged in!");
         setTimeout(() => {
-            Example: window.location.href = "/index.html";
+            window.location.href = "/index.html";
         }, 500);
 
     } catch (error) {
@@ -155,3 +138,8 @@ loginBtn.addEventListener('click', async (e) => {
     }
 });
 
+var backBtn = document.getElementById("back");
+backBtn.addEventListener('click',(e)=>{
+e.preventDefault();
+window.location.href ="/index.html";
+})
