@@ -17,40 +17,54 @@
 </head>
 
 <body>
-    <button id="get-started" onclick="getStarted()">Get Started</button>
-    <h1>To Do App.</h1>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="spinner"></div>Loading...
+    </div>
+    <div id="main-content" class="hidden">
+        <div id="nav">
+            <form>
+                <input type="text" value="no username" readonly id="username-display">
+            </form>
+            <h1>To Do App.</h1>
+            <div class="getStarted">
+                <button id="get-started" onclick="getStarted()">Get Started</button>
+            </div>
 
-    <div id="display">
-        <input type="text" placeholder="Enter To Do Item" id="input-display">
-        <div id="buttons">
-            <button onclick="addItem()">Add To Do Item</button>
-            <button onclick="deleteAll()">Delete </button>
-            <div id="modal">
-                <div id="modal-overlay"></div>
-                <div id="modal-content">
-                    <div>
-                        <p>Confirm!</p>
-                        <p>Do you want to delete all?</p>
+        </div>
+
+        <div id="display">
+            <input type="text" placeholder="Enter To Do Item" id="input-display">
+            <div id="buttons">
+                <button onclick="addItem()">Add To Do Item</button>
+                <button onclick="deleteAll()">Delete </button>
+                <div id="modal">
+                    <div id="modal-overlay"></div>
+                    <div id="modal-content">
+                        <div>
+                            <p>Confirm!</p>
+                            <p>Do you want to delete all?</p>
+                        </div>
+                        <div>
+                            <button onclick="modalDelete()">Yes</button>
+                            <button onclick="modalCancel()">No</button>
+                        </div>
+
                     </div>
-                    <div>
-                    <button onclick="modalDelete()">Yes</button>
-                    <button onclick="modalCancel()">No</button>
-                    </div>
-                    
                 </div>
             </div>
         </div>
-    </div>
-    <ul id="lists" onclick="mainLists(event)"></ul>
+        <ul id="lists" onclick="mainLists(event)"></ul>
 
-    <div id="social">
-        <h2>Made by <strong>Muhammad Tariq </strong></h2>
-        <div>
-            <a href="https://www.linkedin.com/in/tariq19/" target="_blank"><i class="ri-linkedin-fill"></i></a>
-            <a href="https://github.com/Tariq-Bawany"><i class="ri-github-fill"></i></a>
+        <div id="social">
+            <h2>Made by <strong>Muhammad Tariq </strong></h2>
+            <div>
+                <a href="https://www.linkedin.com/in/tariq19/" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://github.com/Tariq-Bawany"><i class="ri-github-fill"></i></a>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

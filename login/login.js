@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "./config/firebase.js";
+import { createUserWithEmailAndPassword, db, doc, getAuth, setDoc, signInWithEmailAndPassword } from "../config/firebase.js";
 
 var loginForm = document.getElementById('loginForm');
 var signupForm = document.getElementById('signupForm');
@@ -31,10 +31,11 @@ showLogin.addEventListener('click', function switchToLogin(e) {
 
 
 // Sign UP
-var signUpEmail = document.getElementById("Sign-up-email");
-var signUpPass = document.getElementById("Sign-up-password");
-var signUpBtn = document.getElementById("Sign-up")
-var signUpPassCfrm = document.getElementById("Sign-up-confirm-password")
+const signUpEmail = document.getElementById("Sign-up-email");
+const signUpUserName = document.getElementById("Sign-up-username");
+const signUpPass = document.getElementById("Sign-up-password");
+const signUpBtn = document.getElementById("Sign-up")
+const signUpPassCfrm = document.getElementById("Sign-up-confirm-password")
 
 signUpBtn.addEventListener('click', async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -57,6 +58,7 @@ signUpBtn.addEventListener('click', async (e) => {
             const userCredential = await createUserWithEmailAndPassword(auth, signUpEmail.value, signUpPass.value);
             // Signed up
             const user = userCredential.user;
+            const userID = user.uid
             //
             setTimeout(() => {
                 // switch to login
@@ -69,6 +71,15 @@ signUpBtn.addEventListener('click', async (e) => {
 
                 alert("you has been Signed Up, Now Login to continue to!") //alert afteryou have been signup
             }, 2000);
+            // Add a user  document in collection "Users"
+            await setDoc(doc(db, "Users", userID), {
+                username: signUpUserName.value,
+                email: signUpEmail.value,
+                password: signUpPass.value,
+                uid: userID,
+                todos:[], // initialize and empty array
+            });
+
         }
         catch (error) {
             setTimeout(() => {
@@ -116,6 +127,7 @@ loginBtn.addEventListener('click', async (e) => {
         alert("You have successfully logged in!");
         setTimeout(() => {
             window.location.href = "/index.html";
+
         }, 500);
 
     } catch (error) {
@@ -139,7 +151,7 @@ loginBtn.addEventListener('click', async (e) => {
 });
 
 var backBtn = document.getElementById("back");
-backBtn.addEventListener('click',(e)=>{
-e.preventDefault();
-window.location.href ="/index.html";
+backBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = "/index.html";
 })
