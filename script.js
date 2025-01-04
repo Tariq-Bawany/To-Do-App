@@ -153,12 +153,15 @@ function mainLists(event) {
   // if ==> if the id of the button is edit-btn then it will update the array value and then empty the ul and will render the new array again
   if (btnId.includes("edit-btn")) {
     var newTodo = prompt("Enter new To Do Item")
-
-    todoArr[newBtnId] = newTodo;
-    editFirestoreData(userID,todoArr)
-    // console.log(todoArr)
-    lists.innerHTML = ""
-    renderList()
+    if(!todoArr.includes(newTodo)){
+      todoArr[newBtnId] = newTodo;
+      editFirestoreData(userID,todoArr)
+      // console.log(todoArr)
+      lists.innerHTML = ""
+      renderList()
+    }else{
+      alert("this value is already added")
+    }
   } else if (btnId.includes("dele-btn")) {
     deleteFirestoreData(userID,todoArr[newBtnId]) // will delete the selected data from firestore
     todoArr.splice(newBtnId, 1)
