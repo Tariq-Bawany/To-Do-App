@@ -60,6 +60,7 @@ signUpBtn.addEventListener('click', async (e) => {
             const user = userCredential.user;
             const userID = user.uid
             //
+            localStorage.setItem('userID',userID)
             setTimeout(() => {
                 // switch to login
                 signupForm.classList.add('hidden');

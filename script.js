@@ -5,13 +5,18 @@ var usernameDisplay = document.getElementById("username-display");
 var lists = document.getElementById("lists");
 var todoArr = []
 
+const userID = localStorage.getItem("userID");
+console.log(userID);
+
+
 onAuthStateChanged(auth, async (user) => {
   document.getElementById("main-content").classList.add('hidden')
 
   if (user) {
     try {
+      // const userID = user.uid; // user.uid is saved in userID
       const userID = user.uid; // user.uid is saved in userID
-      localStorage.setItem("userID", userID);
+      // localStorage.setItem("userID", userID);
       console.log(localStorage.getItem("userID"));
       
 
@@ -40,7 +45,7 @@ onAuthStateChanged(auth, async (user) => {
 
     }
   } else {
-    confirm("No user is logged in. Redirecting to login...");
+    alert("No user is logged in. Redirecting to login...");
     window.location.href = '/login/login.html'
 
   }
@@ -70,9 +75,8 @@ async function fetchUserData(userID) {
 }
 
 // ******************************************************************
-const userID = localStorage.getItem("userID");
-console.log(userID);
 
+console.log(userID);
 
 // addItem adds items given in the input to the l
 function addItem() {
@@ -81,11 +85,10 @@ function addItem() {
   if (inputDisplay.value !== "") {
     if (todoArr.length < 13) {
       if(!todoArr.includes(inputDisplay.value)){
+        addDataToFirestore(userID,inputDisplay.value) // first the value is sent as an argument then it is push in the todoArr
         todoArr.push(inputDisplay.value);//push the inputdisplay value to array todoArr
-        addDataToFirestore(userID)
         renderList()
         inputDisplay.value = ""
-
       }else{
         alert("this value is already added")
         renderList()
@@ -215,14 +218,14 @@ async function deleteAllFirestoreData(userID) {
   }
 }
 // addDataToFirestore will add data to firestore when click on add item
-async function addDataToFirestore(userID) {
+async function addDataToFirestore(userID,addData) {
   try {
     // Reference to the Firestore document
     const docRef = doc(db, "Users", userID); // Replace with your collection and document ID
 
     // Update the array field using arrayUnion
     await updateDoc(docRef, {
-      todos: arrayUnion(inputDisplay.value) // 'todos' is the name of the array field
+      todos: arrayUnion(addData) // 'todos' is the name of the array field
     });
   } catch (error) {
     console.error("Error adding element to array:", error);
