@@ -12,6 +12,8 @@ onAuthStateChanged(auth, async (user) => {
     try {
       const userID = user.uid; // user.uid is saved in userID
       localStorage.setItem("userID", userID);
+      console.log(localStorage.getItem("userID"));
+      
 
       console.log("User is logged in. User ID:", userID); //console
       const docRef = doc(db, "Users", userID);  // check if user is available or not
@@ -69,6 +71,7 @@ async function fetchUserData(userID) {
 
 // ******************************************************************
 const userID = localStorage.getItem("userID");
+console.log(userID);
 
 
 // addItem adds items given in the input to the l
