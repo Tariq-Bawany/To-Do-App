@@ -72,6 +72,7 @@ body>h1 {
     justify-content: space-between;
     background-color: transparent;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 #nav form {
@@ -89,7 +90,9 @@ body>h1 {
     box-shadow: 0 0 10px #1F2328;
     transition: 1s ease-in-out;
 }
-
+#nav h1{
+    white-space: nowrap;
+}
 /* **************************** */
 #get-started {
     /* position: absolute; */
@@ -102,6 +105,7 @@ body>h1 {
     outline: none;
     box-shadow: 0 0 50px #1F2328;
     position: relative;
+    white-space: nowrap;
 
     &::before {
         content: "";
@@ -380,4 +384,18 @@ body>h1 {
 #social>a:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+@media (max-width:700px) {
+    #nav {
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+    #get-started{
+        box-shadow: none;
+        padding: 5px;
+        &::before{
+            animation: none;
+        }
+    }
 }

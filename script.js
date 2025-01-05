@@ -6,7 +6,7 @@ var lists = document.getElementById("lists");
 var todoArr = []
 
 const userID = localStorage.getItem("userID");
-console.log(userID);
+// console.log(userID);
 
 
 onAuthStateChanged(auth, async (user) => {
@@ -17,10 +17,10 @@ onAuthStateChanged(auth, async (user) => {
       // const userID = user.uid; // user.uid is saved in userID
       const userID = user.uid; // user.uid is saved in userID
       // localStorage.setItem("userID", userID);
-      console.log(localStorage.getItem("userID"));
-      
+      // console.log(localStorage.getItem("userID"));
 
-      console.log("User is logged in. User ID:", userID); //console
+
+      // console.log("User is logged in. User ID:", userID); //console
       const docRef = doc(db, "Users", userID);  // check if user is available or not
       const docSnap = await getDoc(docRef); // get user data
       if (docSnap.exists()) { //if user data is avaliable it will run the fetchUserData() to get todos data
@@ -32,7 +32,7 @@ onAuthStateChanged(auth, async (user) => {
         fetchUserData(userID)
       } else {
         // docSnap.data() will be undefined in this case
-        console.log("No such document!");
+        alert("No such document!");
       }
 
 
@@ -41,7 +41,7 @@ onAuthStateChanged(auth, async (user) => {
     } catch (error) {
       const errorCode = error.code
       const errorMessage = error.message
-      console.log(errorCode);
+      alert(errorMessage);
 
     }
   } else {
@@ -70,13 +70,13 @@ async function fetchUserData(userID) {
     console.log(errorMessage);
 
   }
-  document.getElementById("loading-screen").style.display ='none'
+  document.getElementById("loading-screen").style.display = 'none'
   document.getElementById("main-content").classList.remove('hidden')
 }
 
 // ******************************************************************
 
-console.log(userID);
+// console.log(userID);
 
 // addItem adds items given in the input to the l
 function addItem() {
@@ -84,12 +84,12 @@ function addItem() {
   // if statement checks for ""empty string in given in the input
   if (inputDisplay.value !== "") {
     if (todoArr.length < 13) {
-      if(!todoArr.includes(inputDisplay.value)){
-        addDataToFirestore(userID,inputDisplay.value) // first the value is sent as an argument then it is push in the todoArr
+      if (!todoArr.includes(inputDisplay.value)) {
+        addDataToFirestore(userID, inputDisplay.value) // first the value is sent as an argument then it is push in the todoArr
         todoArr.push(inputDisplay.value);//push the inputdisplay value to array todoArr
         renderList()
         inputDisplay.value = ""
-      }else{
+      } else {
         alert("this value is already added")
         renderList()
       }
@@ -153,17 +153,17 @@ function mainLists(event) {
   // if ==> if the id of the button is edit-btn then it will update the array value and then empty the ul and will render the new array again
   if (btnId.includes("edit-btn")) {
     var newTodo = prompt("Enter new To Do Item")
-    if(!todoArr.includes(newTodo)){
+    if (!todoArr.includes(newTodo)) {
       todoArr[newBtnId] = newTodo;
-      editFirestoreData(userID,todoArr)
+      editFirestoreData(userID, todoArr)
       // console.log(todoArr)
       lists.innerHTML = ""
       renderList()
-    }else{
+    } else {
       alert("this value is already added")
     }
   } else if (btnId.includes("dele-btn")) {
-    deleteFirestoreData(userID,todoArr[newBtnId]) // will delete the selected data from firestore
+    deleteFirestoreData(userID, todoArr[newBtnId]) // will delete the selected data from firestore
     todoArr.splice(newBtnId, 1)
     lists.innerHTML = ""
     renderList()
@@ -175,11 +175,11 @@ getStarted.addEventListener('click', () => {
   window.location.href = "/login/login.html";
 })
 // editFirestoreData this will edit the data in the locat array and sent whole updated array as an argument and then firestore array replaces with updated array.
-async function editFirestoreData(userID,updatedArr) {
+async function editFirestoreData(userID, updatedArr) {
   try {
     // Reference to the Firestore document
     const docRef = doc(db, "Users", userID); // Replace with your collection and document ID
-    
+
     // Update the array field using arrayUnion
     await updateDoc(docRef, {
       todos: [...updatedArr] //resets the todos to empty array
@@ -190,11 +190,11 @@ async function editFirestoreData(userID,updatedArr) {
   }
 }
 // deleteFirestoreData will delete the selected data from todos in firestore data
-async function deleteFirestoreData(userID,dataToDelete) {
+async function deleteFirestoreData(userID, dataToDelete) {
   try {
     // Reference to the Firestore document
     const docRef = doc(db, "Users", userID); // Replace with your collection and document ID
-console.log(dataToDelete);
+    // console.log(dataToDelete);
 
     // Update the array field using arrayUnion
     await updateDoc(docRef, {
@@ -221,7 +221,7 @@ async function deleteAllFirestoreData(userID) {
   }
 }
 // addDataToFirestore will add data to firestore when click on add item
-async function addDataToFirestore(userID,addData) {
+async function addDataToFirestore(userID, addData) {
   try {
     // Reference to the Firestore document
     const docRef = doc(db, "Users", userID); // Replace with your collection and document ID
